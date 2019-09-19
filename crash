@@ -1,0 +1,186 @@
+---- Minecraft Crash Report ----
+// Daisy, daisy...
+
+Time: 19/09/19 04:35
+Description: Exception in server tick loop
+
+java.lang.RuntimeException: java.lang.ClassCastException: com.google.gson.JsonPrimitive cannot be cast to com.google.gson.JsonObject
+	at codechicken.chunkloader.ChunkLoaderManager.load(ChunkLoaderManager.java:496)
+	at codechicken.chunkloader.ChunkLoaderEventHandler.onWorldLoad(ChunkLoaderEventHandler.java:56)
+	at cpw.mods.fml.common.eventhandler.ASMEventHandler_352_ChunkLoaderEventHandler_onWorldLoad_Load.invoke(.dynamic)
+	at cpw.mods.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:54)
+	at cpw.mods.fml.common.eventhandler.EventBus.post(EventBus.java:140)
+	at net.minecraft.server.integrated.IntegratedServer.func_71247_a(IntegratedServer.java:73)
+	at net.minecraft.server.integrated.IntegratedServer.func_71197_b(IntegratedServer.java:92)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:387)
+	at net.minecraft.server.MinecraftServer$2.run(MinecraftServer.java:685)
+Caused by: java.lang.ClassCastException: com.google.gson.JsonPrimitive cannot be cast to com.google.gson.JsonObject
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService$GameProfileSerializer.deserialize(YggdrasilAuthenticationService.java:116)
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService$GameProfileSerializer.deserialize(YggdrasilAuthenticationService.java:1)
+	at com.google.gson.TreeTypeAdapter.read(TreeTypeAdapter.java:58)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:868)
+	at com.google.gson.Gson$1.deserialize(Gson.java:126)
+	at com.mojang.authlib.yggdrasil.response.ProfileSearchResultsResponse$Serializer.deserialize(ProfileSearchResultsResponse.java:44)
+	at com.mojang.authlib.yggdrasil.response.ProfileSearchResultsResponse$Serializer.deserialize(ProfileSearchResultsResponse.java:1)
+	at com.google.gson.TreeTypeAdapter.read(TreeTypeAdapter.java:58)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at com.google.gson.Gson.fromJson(Gson.java:689)
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:75)
+	at com.mojang.authlib.yggdrasil.YggdrasilGameProfileRepository.findProfilesByNames(YggdrasilGameProfileRepository.java:53)
+	at net.minecraft.server.management.PlayerProfileCache.func_152650_a(PlayerProfileCache.java:93)
+	at net.minecraft.server.management.PlayerProfileCache.func_152655_a(PlayerProfileCache.java:179)
+	at codechicken.core.ServerUtils.getGameProfile(ServerUtils.java:80)
+	at codechicken.core.ServerUtils.isPlayerOP(ServerUtils.java:84)
+	at codechicken.chunkloader.ChunkLoaderManager.allowOffline(ChunkLoaderManager.java:582)
+	at codechicken.chunkloader.ChunkLoaderManager.loadPlayerChunks(ChunkLoaderManager.java:543)
+	at codechicken.chunkloader.ChunkLoaderManager.load(ChunkLoaderManager.java:492)
+	... 8 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.7.10
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_212, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 1005650520 bytes (959 MB) / 1627389952 bytes (1552 MB) up to 3817865216 bytes (3641 MB)
+	JVM Flags: 3 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -Xmx4096m -XX:MaxPermSize=256m
+	AABB Pool Size: 0 (0 bytes; 0 MB) allocated, 0 (0 bytes; 0 MB) used
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP v9.05 FML v7.10.99.99 Minecraft Forge 10.13.4.1558 57 mods loaded, 57 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAA	mcp{9.05} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAA	FML{7.10.99.99} [Forge Mod Loader] (modpack.jar) 
+	UCHIJAA	Forge{10.13.4.1558} [Minecraft Forge] (modpack.jar) 
+	UCHIJAA	appliedenergistics2-core{rv2-stable-10} [AppliedEnergistics2 Core] (minecraft.jar) 
+	UCHIJAA	CodeChickenCore{1.0.7.47} [CodeChicken Core] (minecraft.jar) 
+	UCHIJAA	NotEnoughItems{1.0.5.120} [Not Enough Items] (notenoughitems-1.7.10-1.0.5.120-universal.jar) 
+	UCHIJAA	OpenModsCore{0.10} [OpenModsCore] (minecraft.jar) 
+	UCHIJAA	<CoFH ASM>{000} [CoFH ASM] (minecraft.jar) 
+	UCHIJAA	appliedenergistics2{rv2-stable-10} [Applied Energistics 2] (appliedenergistics2-rv2-stable-10 (1).jar) 
+	UCHIJAA	bdlib{1.9.2.104} [BD Lib] (bdlib-1.9.2.104-mc1.7.10.jar) 
+	UCHIJAA	ae2stuff{0.5.0.56} [AE2 Stuff] (ae2stuff-0.5.0.56-mc1.7.10.jar) 
+	UCHIJAA	Baubles{1.0.1.10} [Baubles] (Baubles-1.7.10-1.0.1.10.jar) 
+	UCHIJAA	Thaumcraft{4.2.3.5} [Thaumcraft] (Thaumcraft-1.7.10-4.2.3.5.jar) 
+	UCHIJAA	Avaritia{1.13} [Avaritia] (Avaritia-1.13.jar) 
+	UCHIJAA	BBG{1.0.0} [BetterBedrockGen] (BBG-1.0.0.jar) 
+	UCHIJAA	FLabsBF{4.3} [Better Furnaces] (Better-Furnaces-Mod-1.7.10 (2).jar) 
+	UCHIJAA	CoFHCore{1.7.10R3.1.4} [CoFH Core] (CoFHCore-[1.7.10]3.1.4-329.jar) 
+	UCHIJAA	BrandonsCore{1.0.0.12} [Brandon's Core] (brandonscore-1.0.0.12.jar) 
+	UCHIJAA	ChickenChunks{1.3.4.19} [ChickenChunks] (ChickenChunks-1.7.10-1.3.4.19-universal (2).jar) 
+	UCHIJAA	chocolateQuest{1.0} [Chocolate Quest] (chocolateQuest-1.7.10-1.0.jar) 
+	UCHIJAA	csaddle{1.2} [Craftable Saddles] (Craftable+Saddles+mc+1.7.10.jar) 
+	UCHIJAA	DamageIndicatorsMod{3.2.0} [Damage Indicators] (Damage-Indicators-Mod-1.7.10.jar) 
+	UCHIJAA	ThermalFoundation{1.7.10R1.2.6} [Thermal Foundation] (thermalfoundation-1.7.10-1.2.6-118.jar) 
+	UCHIJAA	ThermalExpansion{1.7.10R4.1.5} [Thermal Expansion] (thermalexpansion-1.7.10-4.1.5-248.jar) 
+	UCHIJAA	DraconicEvolution{1.0.2h} [Draconic Evolution] (Draconic-Evolution-Mod-1.7.10.jar) 
+	UCHIJAA	eplus{3.0.2-d} [Enchanting Plus] (EnchantingPlus-1.7.10-3.0.2-d.jar) 
+	UCHIJAA	endercore{1.7.10-0.2.0.39_beta} [EnderCore] (EnderCore-1.7.10-0.2.0.39_beta.jar) 
+	UCHIJAA	Waila{1.5.10} [Waila] (Waila-Mod-1.7.10.jar) 
+	UCHIJAA	EnderIO{1.7.10-2.3.0.429_beta} [Ender IO] (EnderIO-1.7.10-2.3.0.429_beta.jar) 
+	UCHIJAA	EnderStorage{1.4.7.38} [EnderStorage] (enderstorage-1.7.10-1.4.7.38-universal.jar) 
+	UCHIJAA	ForgeMultipart{1.2.0.345} [Forge Multipart] (ForgeMultipart-1.7.10-1.2.0.345-universal.jar) 
+	UCHIJAA	ExtraUtilities{1.2.12} [Extra Utilities] (Extra-Utilities-Mod-1.7.10.jar) 
+	UCHIJAA	Mantle{1.7.10-0.3.2.jenkins184} [Mantle] (Mantle-1.7.10-0.3.2.jar) 
+	UCHIJAA	Natura{2.2.0} [Natura] (natura-1.7.10-2.2.0.1.jar) 
+	UCHIJAA	TConstruct{1.7.10-1.8.8.build988} [Tinkers' Construct] (TConstruct-1.7.10-1.8.8.jar) 
+	UCHIJAA	ExtraTiC{1.4.6} [ExtraTiC] (ExtraTiC-1.7.10-1.4.6.jar) 
+	UCHIJAA	inventorytweaks{1.58-147-645ca10} [Inventory Tweaks] (Inventory-Tweaks-Mod-1.7.10.jar) 
+	UCHIJAA	IronChest{6.0.62.742} [Iron Chest] (ironchest-1.7.10-6.0.62.742-universal.jar) 
+	UCHIJAA	JABBA{1.2.2} [JABBA] (Jabba-1.2.2_1.7.10.jar) 
+	UCHIJAA	journeymap{5.1.4p1} [JourneyMap] (journeymap-1.7.10-5.1.4p1-unlimited.jar) 
+	UCHIJAA	levelup{0.10} [Level Up!] (Level-Up-Mod-1.7.10.jar) 
+	UCHIJAA	LunatriusCore{1.1.2.21} [LunatriusCore] (LunatriusCore-1.7.10-1.1.2.21-universal.jar) 
+	UCHIJAA	malisiscore{1.7.10-0.14.3} [MalisisCore] (malisiscore-1.7.10-0.14.3.jar) 
+	UCHIJAA	malisisdoors{1.7.10-1.13.2} [Malisis' Doors] (malisisdoors-1.7.10-1.13.2.jar) 
+	UCHIJAA	Mekanism{9.1.1} [Mekanism] (mekanism-1.7.10-9.1.1.1031.jar) 
+	UCHIJAA	MekanismGenerators{9.1.1} [MekanismGenerators] (mekanismgenerators-1.7.10-9.1.1.1031.jar) 
+	UCHIJAA	MekanismTools{9.1.1} [MekanismTools] (mekanismtools-1.7.10-9.1.1.1031.jar) 
+	UCHIJAA	OpenMods{0.10} [OpenMods] (openmodslib-1.7.10-0.10.jar) 
+	UCHIJAA	OpenBlocks{1.6} [OpenBlocks] (OpenBlocks-Mod-1.7.10.jar) 
+	UCHIJAA	Schematica{1.7.6.131} [Schematica] (Schematica-1.7.10-1.7.6.131-universal.jar) 
+	UCHIJAA	chunkbase_slimemod_ssp{2.1} [Slime Mod (SSP)] (SlimeModSSP-1.7.10-2.1.jar) 
+	UCHIJAA	ThermalDynamics{1.7.10R1.2.1} [Thermal Dynamics] (thermaldynamics-1.7.10-1.2.1-172.jar) 
+	UCHIJAA	bspkrsCore{6.15} [bspkrsCore] ([1.7.10]bspkrsCore-universal-6.15.jar) 
+	UCHIJAA	Treecapitator{1.7.10} [Treecapitator] (Tree-Capitator-Mod-1.7.10.jar) 
+	UCHIJAA	witchery{0.24.1} [Witchery] (witchery-1.7.10-0.24.1.jar) 
+	UCHIJAA	McMultipart{1.2.0.345} [Minecraft Multipart Plugin] (ForgeMultipart-1.7.10-1.2.0.345-universal.jar) 
+	UCHIJAA	ForgeMicroblock{1.2.0.345} [Forge Microblocks] (ForgeMultipart-1.7.10-1.2.0.345-universal.jar) 
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	OpenModsLib class transformers: [stencil_patches:FINISHED],[movement_callback:FINISHED],[player_damage_hook:FINISHED],[map_gen_fix:FINISHED],[gl_capabilities_hook:FINISHED],[player_render_hook:FINISHED]
+	Class transformer null safety: found misbehaving transformers: me.guichaguri.betterfps.transformers.MathTransformer(me.guichaguri.betterfps.transformers.MathTransformer@14a851de) returned non-null result: 0,me.guichaguri.betterfps.transformers.EventTransformer(me.guichaguri.betterfps.transformers.EventTransformer@1fd1bde1) returned non-null result: 0
+	AE2 Version: stable rv2-stable-10 for Forge 10.13.2.1291
+	CoFHCore: -[1.7.10]3.1.4-329
+	ThermalFoundation: -[1.7.10]1.2.6-118
+	ThermalExpansion: -[1.7.10]4.1.5-248
+	Mantle Environment: Environment healthy.
+	TConstruct Environment: Environment healthy.
+	ThermalDynamics: -[1.7.10]1.2.1-172
+	List of loaded APIs: 
+		* appliedenergistics2|API (rv2) from appliedenergistics2-rv2-stable-10 (1).jar
+		* Baubles|API (1.0.1.10) from thermalfoundation-1.7.10-1.2.6-118.jar
+		* BotaniaAPI (61) from Avaritia-1.13.jar
+		* BuildCraftAPI|core (1.0) from Extra-Utilities-Mod-1.7.10.jar
+		* BuildCraftAPI|tools (1.0) from Extra-Utilities-Mod-1.7.10.jar
+		* CoFHAPI (1.7.10R1.0.10) from mekanism-1.7.10-9.1.1.1031.jar
+		* CoFHAPI|block (1.7.10R1.0.13) from EnderIO-1.7.10-2.3.0.429_beta.jar
+		* CoFHAPI|core (1.7.10R1.3.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHAPI|energy (1.7.10R1.3.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHAPI|fluid (1.7.10R1.3.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHAPI|inventory (1.7.10R1.3.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHAPI|item (1.7.10R1.3.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHAPI|modhelpers (1.7.10R1.3.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHAPI|tileentity (1.7.10R1.0.13) from EnderIO-1.7.10-2.3.0.429_beta.jar
+		* CoFHAPI|transport (1.7.10R1.3.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHAPI|world (1.7.10R1.3.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|audio (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|gui (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|gui|container (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|gui|element (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|gui|element|listbox (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|gui|slot (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|inventory (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|render (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|render|particle (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|util (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|util|helpers (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|util|position (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|world (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* CoFHLib|world|feature (1.7.10R1.2.1) from CoFHCore-[1.7.10]3.1.4-329.jar
+		* DraconicEvolution|API (1.2) from Draconic-Evolution-Mod-1.7.10.jar
+		* EnderIOAPI (0.0.2) from EnderIO-1.7.10-2.3.0.429_beta.jar
+		* EnderIOAPI|Redstone (0.0.2) from EnderIO-1.7.10-2.3.0.429_beta.jar
+		* EnderIOAPI|Teleport (0.0.2) from EnderIO-1.7.10-2.3.0.429_beta.jar
+		* EnderIOAPI|Tools (0.0.2) from EnderIO-1.7.10-2.3.0.429_beta.jar
+		* MekanismAPI|core (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* MekanismAPI|energy (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* MekanismAPI|gas (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* MekanismAPI|infuse (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* MekanismAPI|laser (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* MekanismAPI|reactor (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* MekanismAPI|recipe (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* MekanismAPI|transmitter (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* MekanismAPI|util (9.0.0) from mekanism-1.7.10-9.1.1.1031.jar
+		* OpenBlocks|API (1.1) from OpenBlocks-Mod-1.7.10.jar
+		* SchematicaAPI (1.1) from Schematica-1.7.10-1.7.6.131-universal.jar
+		* SchematicaAPI|Events (1.1) from Schematica-1.7.10-1.7.6.131-universal.jar
+		* Thaumcraft|API (4.2.2.0) from Thaumcraft-1.7.10-4.2.3.5.jar
+		* WailaAPI (1.2) from Waila-Mod-1.7.10.jar
+	EnderIO: Found the following problem(s) with your installation:
+                  * The RF API that is being used (1.7.10R1.0.2 from <unknown>) differes from that that is reported as being loaded (1.7.10R1.3.1 from CoFHCore-[1.7.10]3.1.4-329.jar).
+                    It is a supported version, but that difference may lead to problems.
+                 This may have caused the error. Try reproducing the crash WITHOUT this/these mod(s) before reporting it.
+	Stencil buffer state: Function set: GL30, pool: forge, bits: 8
+	AE2 Integration: IC2:OFF, RotaryCraft:OFF, RC:OFF, BC:OFF, RF:ON, RFItem:ON, MFR:OFF, DSU:ON, FZ:OFF, FMP:ON, RB:OFF, CLApi:OFF, Waila:ON, InvTweaks:ON, NEI:ON, CraftGuide:OFF, Mekanism:ON, ImmibisMicroblocks:OFF, BetterStorage:OFF
+	Profiler Position: N/A (disabled)
+	Vec3 Pool Size: 0 (0 bytes; 0 MB) allocated, 0 (0 bytes; 0 MB) used
+	Player Count: 0 / 8; []
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
